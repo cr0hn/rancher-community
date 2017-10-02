@@ -1,0 +1,7 @@
+name: Sematext Docker Agent
+description: |
+  Performance Monitoring and Log Management. Collection of Metrics, Events and Logs. 
+version: 1.29.44
+category: Monitoring
+maintainer: "Sematext Group Inc. <docker@sematext.com>"
+license: APACHE 2.0

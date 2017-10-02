@@ -1,0 +1,15 @@
+logspout:
+  restart: always
+  environment:
+    ROUTE_URIS: "${route_uri}"
+    LOGSPOUT: 'ignore'
+  volumes:
+  - '/var/run/docker.sock:/var/run/docker.sock'
+  external_links:
+  - ${target_link}:${target_link_name}
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  image: bekt/logspout-logstash:latest
+  stdin_open: true

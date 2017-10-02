@@ -1,0 +1,4 @@
+ghost:
+  image: ghost
+  ports:
+    - ${public_port}:2368

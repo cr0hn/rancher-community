@@ -1,0 +1,5 @@
+name: Consul Cluster
+description: |
+  Consul cluster
+version: 0.8-rancher1
+category: Clustering
