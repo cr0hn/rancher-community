@@ -1,13 +1,14 @@
 version: '2'
 services:
-  postgres-lb:
-    image: rancher/lb-service-haproxy
-    ports:
-      - ${lb_port}
-    {{- if ne .Values.host_label ""}}
+  pgweb:
+    image: moritanosuke/docker-pgweb
     labels:
-      io.rancher.scheduler.affinity:host_label: ${host_label}
-    {{- end}}
+      POSTGRES_DB: ${postgres_db}
+      POSTGRES_USER: ${postgres_user}
+      POSTGRES_PASSWORD: ${postgres_password}
+      POSTGRES=postgres
+      PORT=5432
+      SSL=disable
 
   postgres-data:
     image: busybox
