@@ -29,7 +29,7 @@ services:
 
   pgweb:
     image: moritanosuke/docker-pgweb
-    labels:
+    environment:
       POSTGRES_DB: ${postgres_db}
       POSTGRES_USER: ${postgres_user}
       POSTGRES_PASSWORD: ${postgres_password}
