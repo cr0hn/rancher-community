@@ -35,7 +35,7 @@ services:
       POSTGRES_PASSWORD: ${postgres_password}
       POSTGRES:postgreshost
       PORT:5432
-      SSL=disable
+      SSL:disable
     links:
       - postgres:postgreshost
 
