@@ -1,6 +1,6 @@
 version: '2'
 catalog:
-  name: "Postgres"
+  name: "Postgres + Pgweb"
   version: "v0.0.2"
   description: "PostgreSQL"
   uuid: postgres-0
