@@ -1,15 +1,5 @@
 version: '2'
 services:
-  pgweb:
-    image: moritanosuke/docker-pgweb
-    labels:
-      POSTGRES_DB: ${postgres_db}
-      POSTGRES_USER: ${postgres_user}
-      POSTGRES_PASSWORD: ${postgres_password}
-      POSTGRES=postgres
-      PORT=5432
-      SSL=disable
-
   postgres-data:
     image: busybox
     labels:
@@ -36,6 +26,19 @@ services:
     {{- end}}
     volumes_from:
       - postgres-data
+
+  pgweb:
+    image: moritanosuke/docker-pgweb
+    labels:
+      POSTGRES_DB: ${postgres_db}
+      POSTGRES_USER: ${postgres_user}
+      POSTGRES_PASSWORD: ${postgres_password}
+      POSTGRES=postgreshost
+      PORT=5432
+      SSL=disable
+    links:
+      - postgres:postgreshost
+
 volumes:
   pgdata:
     driver: ${VOLUME_DRIVER}
