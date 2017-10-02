@@ -33,8 +33,8 @@ services:
       POSTGRES_DB: ${postgres_db}
       POSTGRES_USER: ${postgres_user}
       POSTGRES_PASSWORD: ${postgres_password}
-      POSTGRES=postgreshost
-      PORT=5432
+      POSTGRES:postgreshost
+      PORT:5432
       SSL=disable
     links:
       - postgres:postgreshost
