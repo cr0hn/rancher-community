@@ -1,4 +1,4 @@
-name: PostgreSQL + PgWeb
+name: PostgreSQL + phppgadmin
 description: |
   PostgreSQL — an object-relational database (ORDBMS)
 version: v0.0.2

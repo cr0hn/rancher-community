@@ -27,14 +27,12 @@ services:
     volumes_from:
       - postgres-data
 
-  pgweb:
-    image: moritanosuke/docker-pgweb
+  phppgadmin:
+    image: zhajor/docker-phppgadmin
     environment:
-      POSTGRES_DB: ${postgres_db}
-      POSTGRES_USER: ${postgres_user}
-      POSTGRES_PASSWORD: ${postgres_password}
-      POSTGRES: postgreshost
-      PORT: 5432
+      APACHE_SERVERNAME: ${host_name}
+      DB_HOST: postgreshost
+      DB_PORT: 5432
       SSL: disable
     links:
       - postgres:postgreshost

@@ -31,9 +31,6 @@ catalog:
       default: "9.6-alpine"
       type: enum
       options: # List of options if using type of `enum`
-        - latest
-        - 10-alpine
-        - 10
         - 9-alpine
         - 9
         - 9.6-alpine
@@ -57,6 +54,13 @@ catalog:
         - rancher-nfs
         - rancher-efs
         - rancher-ebs
+    - variable: host_name
+      label: "Host name for the PHPgadmin"
+      description: |
+        The host name where will be used for the PHPpgAdmin service
+      required: true
+      default: ""
+      type: "string"
     - variable: host_label
       label: "Host with Label to put postgres on"
       description: |
