@@ -80,10 +80,10 @@ services:
       healthy_threshold: 2
       response_timeout: 2000
 
-  pgweb:
+  phppgadmin:
     scale: 1
     health_check:
-      port: 8081
+      port: 80
       interval: 2000
       unhealthy_threshold: 3
       healthy_threshold: 2
