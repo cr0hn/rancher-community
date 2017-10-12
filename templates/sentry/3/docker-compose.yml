@@ -5,6 +5,7 @@ services:
       SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
       SENTRY_SECRET_KEY: ${sentry_secret_key}
       SENTRY_POSTGRES_HOST: postgres
+      SENTRY_POSTGRES_PORT: "${postgres_port}"
       SENTRY_DB_NAME: ${sentry_db_name}
       SENTRY_DB_USER: ${sentry_db_user}
       SENTRY_DB_PASSWORD: ${sentry_db_pass}
@@ -34,6 +35,7 @@ services:
       SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
       SENTRY_SECRET_KEY: ${sentry_secret_key}
       SENTRY_POSTGRES_HOST: postgres
+      SENTRY_POSTGRES_PORT: "${postgres_port}"
       SENTRY_DB_NAME: ${sentry_db_name}
       SENTRY_DB_USER: ${sentry_db_user}
       SENTRY_DB_PASSWORD: ${sentry_db_pass}
@@ -57,11 +59,11 @@ services:
       SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
       SENTRY_SECRET_KEY: ${sentry_secret_key}
       SENTRY_POSTGRES_HOST: postgres
+      SENTRY_POSTGRES_PORT: "${postgres_port}"
       SENTRY_DB_NAME: ${sentry_db_name}
       SENTRY_DB_USER: ${sentry_db_user}
       SENTRY_DB_PASSWORD: ${sentry_db_pass}
     labels:
-      io.rancher.scheduler.global: 'true'
       io.rancher.container.hostname_override: container_name
     tty: true
     command:

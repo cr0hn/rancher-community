@@ -38,6 +38,13 @@ catalog:
       label: "MAILGUN_API_KEY"
       description: "Mailgun API Key"
 
+    - variable: "postgres_port"
+      type: "string"
+      required: true
+      label: "Postgres Port"
+      default: "5432"
+      description: "Postgres port"
+
     - variable: "postgres_link"
       description: |
         Choose the PostgresSQL database link
