@@ -17,8 +17,9 @@ services:
     - cron
     image: sentry:8.21.0
     links:
-    - ${postgres_link}:postgres
     - sentry-redis:redis
+    external_links:
+    - ${postgres_link}:postgres
     stdin_open: true
     volumes:
       - SENTRY:/var/lib/sentry/files
@@ -47,8 +48,9 @@ services:
     - sentry upgrade --noinput && sentry createuser --email ${sentry_initial_user_email} --password ${sentry_initial_user_password} --superuser && /entrypoint.sh run web || /entrypoint.sh run web
     image: sentry:8.21.0
     links:
-    - ${postgres_link}:postgres
     - sentry-redis:redis
+    external_links:
+    - ${postgres_link}:postgres
     stdin_open: true
     volumes:
       - SENTRY:/var/lib/sentry/files
@@ -69,8 +71,9 @@ services:
     - worker
     image: sentry:8.21.0
     links:
-    - ${postgres_link}:postgres
     - sentry-redis:redis
+    external_links:
+    - ${postgres_link}:postgres
     stdin_open: true
     volumes:
       - SENTRY:/var/lib/sentry/files
