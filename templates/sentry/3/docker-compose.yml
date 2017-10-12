@@ -21,7 +21,7 @@ sentry-cron:
   - sentry-redis:redis
   stdin_open: true
   volumes:
-    - sentry_volume:/var/lib/sentry/files
+    - SENTRY:/var/lib/sentry/files
 sentry-redis:
   log_driver: ''
   labels:
@@ -55,7 +55,7 @@ sentry:
   - sentry-redis:redis
   stdin_open: true
   volumes:
-    - sentry_volume:/var/lib/sentry/files
+    - SENTRY:/var/lib/sentry/files
 sentry-worker:
   environment:
     SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
@@ -79,8 +79,8 @@ sentry-worker:
   - sentry-redis:redis
   stdin_open: true
   volumes:
-    - sentry_volume:/var/lib/sentry/files
+    - SENTRY:/var/lib/sentry/files
 
 volumes:
-  sentry_volume:
+  SENTRY:
     driver: rancher-nfs
