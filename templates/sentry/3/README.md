@@ -10,6 +10,8 @@
 
  This Sentry will listen at internal port 9000
 
+*Be sure that the Database user has admin privileges!*
+
 ### Usage:
 
  * Select Sentry from catalog.
