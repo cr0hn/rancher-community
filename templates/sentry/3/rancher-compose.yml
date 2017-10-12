@@ -1,0 +1,87 @@
+version: '2'
+catalog:
+  name: Sentry
+  version: 8.18.0
+  description: Sentry is a realtime event logging and aggregation platform
+
+  questions:
+    - variable: "sentry_secret_key"
+      type: "password"
+      required: true
+      label: "SENTRY_SECRET_KEY"
+      description: "A secret key used for cryptographic functions within Sentry. see https://hub.docker.com/_/sentry/ for more info"
+
+    - variable: "sentry_public_port"
+      type: "int"
+      required: true
+      label: "Sentry public port"
+      default: 9000
+      description: "Port that Sentry will listen on. Alternatively you could point a load balancer to the port 9000 of this container"
+
+    - variable: "sentry_db_name"
+      type: "string"
+      required: true
+      label: "Sentry db name"
+      default: "sentry"
+      description: "Sentry db name."
+
+    - variable: "sentry_db_user"
+      type: "string"
+      required: true
+      label: "Sentry db user"
+      default: "sentry"
+      description: "Sentry db user."
+
+    - variable: "sentry_db_pass"
+      type: "string"
+      required: true
+      label: "Sentry db pass"
+      default: "sentry"
+      description: "Sentry db pass."
+
+    - variable: "sentry_mail_gun_api_key"
+      type: "string"
+      required: true
+      label: "MAILGUN_API_KEY"
+      description: "Mailgun API Key"
+
+    - variable: "postgres_link"
+      description: |
+        Choose the PostgresSQL database link
+      label: "Postgres stack/service"
+      default: "postgres/postgres"
+      required: true
+      type: "service"
+
+
+services:
+  sentry-cron:
+    scale: 1
+    start_on_create: true
+  sentry-worker:
+    start_on_create: true
+  sentry-redis:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 6379
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      strategy: recreate
+      reinitializing_timeout: 60000
+  sentry:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 9000
+      unhealthy_threshold: 3
+      initializing_timeout: 600000
+      interval: 2000
+      strategy: recreate
+      request_line: GET "/auth/login/sentry" "HTTP/1.0"
+      reinitializing_timeout: 60000
