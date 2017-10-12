@@ -30,8 +30,6 @@ services:
     image: redis:3.2-alpine
     stdin_open: true
   sentry:
-    ports:
-    - ${sentry_public_port}:9000/tcp
     environment:
       SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
       SENTRY_SECRET_KEY: ${sentry_secret_key}
