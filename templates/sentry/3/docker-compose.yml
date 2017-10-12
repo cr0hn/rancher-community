@@ -4,7 +4,7 @@ services:
     environment:
       SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
       SENTRY_SECRET_KEY: ${sentry_secret_key}
-      SENTRY_POSTGRES_HOST: ${postgres_link}
+      SENTRY_POSTGRES_HOST: postgres
       SENTRY_DB_NAME: ${sentry_db_name}
       SENTRY_DB_USER: ${sentry_db_user}
       SENTRY_DB_PASSWORD: ${sentry_db_pass}
@@ -34,7 +34,7 @@ services:
     environment:
       SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
       SENTRY_SECRET_KEY: ${sentry_secret_key}
-      SENTRY_POSTGRES_HOST: ${postgres_link}
+      SENTRY_POSTGRES_HOST: postgres
       SENTRY_DB_NAME: ${sentry_db_name}
       SENTRY_DB_USER: ${sentry_db_user}
       SENTRY_DB_PASSWORD: ${sentry_db_pass}
@@ -56,7 +56,7 @@ services:
     environment:
       SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
       SENTRY_SECRET_KEY: ${sentry_secret_key}
-      SENTRY_POSTGRES_HOST: ${postgres_link}
+      SENTRY_POSTGRES_HOST: postgres
       SENTRY_DB_NAME: ${sentry_db_name}
       SENTRY_DB_USER: ${sentry_db_user}
       SENTRY_DB_PASSWORD: ${sentry_db_pass}

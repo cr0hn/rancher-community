@@ -42,7 +42,6 @@ catalog:
       description: |
         Choose the PostgresSQL database link
       label: "Postgres stack/service"
-      default: "postgres/postgres"
       required: true
       type: "service"
 
