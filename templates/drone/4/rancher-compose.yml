@@ -154,6 +154,23 @@ catalog:
       required: true
       default: "drone_lb=true"
       type: string
+
+    - variable: drone_storage
+      label: Storage options
+      description: |
+        You can choose between local or a datbase engine: http://readme.drone.io/admin/database-engines/
+      required: true
+      default: local
+      type: enum
+      options:
+        - local
+        - mysql
+        - postgres
+    - variable: drone_storage_datasource
+      label: Data source
+      description: Engine data source option (only if you choose mysql or postgres)
+      type: string
+      required: false
 services:
   agent:
     scale: ${agent_scale}

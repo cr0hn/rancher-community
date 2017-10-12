@@ -11,13 +11,6 @@ catalog:
       label: "SENTRY_SECRET_KEY"
       description: "A secret key used for cryptographic functions within Sentry. see https://hub.docker.com/_/sentry/ for more info"
 
-    - variable: "sentry_public_port"
-      type: "int"
-      required: true
-      label: "Sentry public port"
-      default: 9000
-      description: "Port that Sentry will listen on. Alternatively you could point a load balancer to the port 9000 of this container"
-
     - variable: "sentry_db_name"
       type: "string"
       required: true

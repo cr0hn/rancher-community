@@ -70,6 +70,10 @@ services:
       DRONE_GOGS: true
       DRONE_GOGS_URL: ${drone_driver_url}
 {{- end}}
+{{- if ne .Values.drone_storage "local"}}
+      DRONE_DATABASE_DRIVER: ${database_driver}
+      DRONE_DATABASE_DATASOURCE: ${database_source}
+{{- end}}
 {{- if ne .Values.database_driver "sqlite"}}
       DRONE_DATABASE_DRIVER: ${database_driver}
       DRONE_DATABASE_DATASOURCE: ${database_source}

@@ -83,4 +83,4 @@ sentry-worker:
 
 volumes:
   sentry_volume:
-    driver: "rancher-nfs"
+    driver: rancher-nfs
