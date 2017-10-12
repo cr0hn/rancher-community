@@ -1,85 +1,79 @@
-sentry-cron:
-  environment:
-    SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
-    SENTRY_SECRET_KEY: ${sentry_secret_key}
-    SENTRY_POSTGRES_HOST: ${postgres_link}
-    SENTRY_DB_NAME: ${sentry_db_name}
-    SENTRY_DB_USER: ${sentry_db_user}
-    SENTRY_DB_PASSWORD: ${sentry_db_pass}
-    SENTRY_FILESTORE_DIR:
-  log_driver: ''
-  labels:
-    io.rancher.container.hostname_override: container_name
-  tty: true
-  command:
-  - run
-  - cron
-  log_opt: {}
-  image: sentry:8.21.0
-  links:
-  - ${postgres_link}:postgres
-  - sentry-redis:redis
-  stdin_open: true
-  volumes:
-    - SENTRY:/var/lib/sentry/files
-sentry-redis:
-  log_driver: ''
-  labels:
-    io.rancher.container.hostname_override: container_name
-  tty: true
-  log_opt: {}
-  image: redis:3.2-alpine
-  stdin_open: true
-sentry:
-  ports:
-  - ${sentry_public_port}:9000/tcp
-  environment:
-    SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
-    SENTRY_SECRET_KEY: ${sentry_secret_key}
-    SENTRY_POSTGRES_HOST: ${postgres_link}
-    SENTRY_DB_NAME: ${sentry_db_name}
-    SENTRY_DB_USER: ${sentry_db_user}
-    SENTRY_DB_PASSWORD: ${sentry_db_pass}
-  log_driver: ''
-  labels:
-    io.rancher.container.hostname_override: container_name
-  tty: true
-  command:
-  - /bin/bash
-  - -c
-  - sentry upgrade --noinput && sentry createuser --email ${sentry_initial_user_email} --password ${sentry_initial_user_password} --superuser && /entrypoint.sh run web || /entrypoint.sh run web
-  log_opt: {}
-  image: sentry:8.21.0
-  links:
-  - ${postgres_link}:postgres
-  - sentry-redis:redis
-  stdin_open: true
-  volumes:
-    - SENTRY:/var/lib/sentry/files
-sentry-worker:
-  environment:
-    SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
-    SENTRY_SECRET_KEY: ${sentry_secret_key}
-    SENTRY_POSTGRES_HOST: ${postgres_link}
-    SENTRY_DB_NAME: ${sentry_db_name}
-    SENTRY_DB_USER: ${sentry_db_user}
-    SENTRY_DB_PASSWORD: ${sentry_db_pass}
-  log_driver: ''
-  labels:
-    io.rancher.scheduler.global: 'true'
-    io.rancher.container.hostname_override: container_name
-  tty: true
-  command:
-  - run
-  - worker
-  log_opt: {}
-  image: sentry:8.21.0
-  links:
-  - ${postgres_link}:postgres
-  - sentry-redis:redis
-  stdin_open: true
-  volumes:
-    - SENTRY:/var/lib/sentry/files
+version: '2'
+services:
+  sentry-cron:
+    environment:
+      SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
+      SENTRY_SECRET_KEY: ${sentry_secret_key}
+      SENTRY_POSTGRES_HOST: ${postgres_link}
+      SENTRY_DB_NAME: ${sentry_db_name}
+      SENTRY_DB_USER: ${sentry_db_user}
+      SENTRY_DB_PASSWORD: ${sentry_db_pass}
+      SENTRY_FILESTORE_DIR:
+    labels:
+      io.rancher.container.hostname_override: container_name
+    tty: true
+    command:
+    - run
+    - cron
+    image: sentry:8.21.0
+    links:
+    - ${postgres_link}:postgres
+    - sentry-redis:redis
+    stdin_open: true
+    volumes:
+      - SENTRY:/var/lib/sentry/files
+  sentry-redis:
+    labels:
+      io.rancher.container.hostname_override: container_name
+    tty: true
+    image: redis:3.2-alpine
+    stdin_open: true
+  sentry:
+    ports:
+    - ${sentry_public_port}:9000/tcp
+    environment:
+      SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
+      SENTRY_SECRET_KEY: ${sentry_secret_key}
+      SENTRY_POSTGRES_HOST: ${postgres_link}
+      SENTRY_DB_NAME: ${sentry_db_name}
+      SENTRY_DB_USER: ${sentry_db_user}
+      SENTRY_DB_PASSWORD: ${sentry_db_pass}
+    labels:
+      io.rancher.container.hostname_override: container_name
+    tty: true
+    command:
+    - /bin/bash
+    - -c
+    - sentry upgrade --noinput && sentry createuser --email ${sentry_initial_user_email} --password ${sentry_initial_user_password} --superuser && /entrypoint.sh run web || /entrypoint.sh run web
+    image: sentry:8.21.0
+    links:
+    - ${postgres_link}:postgres
+    - sentry-redis:redis
+    stdin_open: true
+    volumes:
+      - SENTRY:/var/lib/sentry/files
+  sentry-worker:
+    environment:
+      SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
+      SENTRY_SECRET_KEY: ${sentry_secret_key}
+      SENTRY_POSTGRES_HOST: ${postgres_link}
+      SENTRY_DB_NAME: ${sentry_db_name}
+      SENTRY_DB_USER: ${sentry_db_user}
+      SENTRY_DB_PASSWORD: ${sentry_db_pass}
+    labels:
+      io.rancher.scheduler.global: 'true'
+      io.rancher.container.hostname_override: container_name
+    tty: true
+    command:
+    - run
+    - worker
+    image: sentry:8.21.0
+    links:
+    - ${postgres_link}:postgres
+    - sentry-redis:redis
+    stdin_open: true
+    volumes:
+      - SENTRY:/var/lib/sentry/files
 
 volumes:
   SENTRY:
