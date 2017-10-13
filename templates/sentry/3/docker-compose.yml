@@ -2,7 +2,11 @@ version: '2'
 services:
   sentry-cron:
     environment:
-      SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
+      SENTRY_EMAIL_USE_TLS: ${sentry_server_email_tls}
+      SENTRY_EMAIL_HOST: ${sentry_email_host}
+      SENTRY_EMAIL_PASSWORD: ${sentry_email_password}
+      SENTRY_EMAIL_PORT: '${sentry_email_port}'
+      SENTRY_EMAIL_USER: ${sentry_email_user}
       SENTRY_SECRET_KEY: ${sentry_secret_key}
       SENTRY_POSTGRES_HOST: postgres
       SENTRY_POSTGRES_PORT: "${postgres_port}"
@@ -32,7 +36,11 @@ services:
     stdin_open: true
   sentry:
     environment:
-      SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
+      SENTRY_EMAIL_USE_TLS: ${sentry_server_email_tls}
+      SENTRY_EMAIL_HOST: ${sentry_email_host}
+      SENTRY_EMAIL_PASSWORD: ${sentry_email_password}
+      SENTRY_EMAIL_PORT: '${sentry_email_port}'
+      SENTRY_EMAIL_USER: ${sentry_email_user}
       SENTRY_SECRET_KEY: ${sentry_secret_key}
       SENTRY_POSTGRES_HOST: postgres
       SENTRY_POSTGRES_PORT: "${postgres_port}"
@@ -56,7 +64,11 @@ services:
       - SENTRY:/var/lib/sentry/files
   sentry-worker:
     environment:
-      SENTRY_MAILGUN_API_KEY: ${sentry_mail_gun_api_key}
+      SENTRY_EMAIL_USE_TLS: ${sentry_server_email_tls}
+      SENTRY_EMAIL_HOST: ${sentry_email_host}
+      SENTRY_EMAIL_PASSWORD: ${sentry_email_password}
+      SENTRY_EMAIL_PORT: '${sentry_email_port}'
+      SENTRY_EMAIL_USER: ${sentry_email_user}
       SENTRY_SECRET_KEY: ${sentry_secret_key}
       SENTRY_POSTGRES_HOST: postgres
       SENTRY_POSTGRES_PORT: "${postgres_port}"

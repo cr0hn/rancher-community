@@ -45,11 +45,42 @@ catalog:
       default: "sentry"
       description: "Sentry db pass."
 
-    - variable: "sentry_mail_gun_api_key"
+    - variable: "sentry_server_email_tls"
       type: "string"
-      required: true
-      label: "MAILGUN_API_KEY"
-      description: "Mailgun API Key"
+      required: false
+      default: "true"
+      label: "SENTRY_EMAIL_USE_TLS"
+      description: "Enable Mail server TLS"
+
+    - variable: "sentry_email_host"
+      type: "string"
+      required: false
+      label: "SENTRY_EMAIL_HOST"
+      description: "The smtp server address. see https://hub.docker.com/_/sentry/ for more info"
+
+    - variable: "sentry_email_user"
+      type: "string"
+      required: false
+      label: "SENTRY_EMAIL_USER"
+      description: "The username for the email account. see https://hub.docker.com/_/sentry/ for more info"
+
+    - variable: "sentry_email_password"
+      type: "password"
+      required: false
+      label: "SENTRY_EMAIL_PASSWORD"
+      description: "The password for the email account. see https://hub.docker.com/_/sentry/ for more info"
+
+    - variable: "sentry_email_port"
+      type: "int"
+      required: false
+      label: "SENTRY_EMAIL_PORT"
+      description: "Port of the smtp server. see https://hub.docker.com/_/sentry/ for more info"
+
+    - variable: "sentry_server_email"
+      type: "string"
+      required: false
+      label: "SENTRY_SERVER_EMAIL"
+      description: "The email address used for 'From:'. see https://hub.docker.com/_/sentry/ for more info"
 
     - variable: "postgres_port"
       type: "string"
