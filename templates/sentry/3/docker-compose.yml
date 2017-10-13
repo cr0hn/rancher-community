@@ -2,6 +2,7 @@ version: '2'
 services:
   sentry-cron:
     environment:
+      TINI_SUBREAPER: "1"
       SENTRY_EMAIL_USE_TLS: ${sentry_server_email_tls}
       SENTRY_EMAIL_HOST: ${sentry_email_host}
       SENTRY_EMAIL_PASSWORD: ${sentry_email_password}
@@ -36,6 +37,7 @@ services:
     stdin_open: true
   sentry:
     environment:
+      TINI_SUBREAPER: "1"
       SENTRY_EMAIL_USE_TLS: ${sentry_server_email_tls}
       SENTRY_EMAIL_HOST: ${sentry_email_host}
       SENTRY_EMAIL_PASSWORD: ${sentry_email_password}
@@ -64,6 +66,7 @@ services:
       - SENTRY:/var/lib/sentry/files
   sentry-worker:
     environment:
+      TINI_SUBREAPER: "1"
       SENTRY_EMAIL_USE_TLS: ${sentry_server_email_tls}
       SENTRY_EMAIL_HOST: ${sentry_email_host}
       SENTRY_EMAIL_PASSWORD: ${sentry_email_password}
