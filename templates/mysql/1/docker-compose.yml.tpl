@@ -29,6 +29,8 @@ services:
       MYSQL_USER: ${mysql_user}
 {{- end}}
     tty: true
+    command:
+        - set global max_allowed_packet=67108864 && mysqld
     stdin_open: true
     labels:
       io.rancher.sidekicks: mysql-data
