@@ -38,6 +38,8 @@ services:
   adminer:
     image: 'clue/adminer:latest'
     restart: on-failure
+    links:
+      - mysql:db
 
 
 volumes:
