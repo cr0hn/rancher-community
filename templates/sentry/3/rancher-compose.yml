@@ -111,7 +111,7 @@ services:
       healthy_threshold: 2
       port: 6379
       unhealthy_threshold: 3
-      initializing_timeout: 60000
+      initializing_timeout: 10000
       interval: 2000
       strategy: recreate
       reinitializing_timeout: 60000

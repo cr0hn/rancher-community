@@ -1,0 +1,5 @@
+name: MySQL + Adminer
+description: |
+  MySQL — an open-source relational database management system (RDBMS)
+version: v0.0.2
+category: Databases
