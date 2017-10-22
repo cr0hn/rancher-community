@@ -103,7 +103,9 @@
       type: "string"
       required: true
       label: "Data directory"
-      default: "/data"
+      default: "/data/"
+      description: "Be careful to finish the path with '/' and sure that the dir is empty"
+
 
 version: '2'
 services:
