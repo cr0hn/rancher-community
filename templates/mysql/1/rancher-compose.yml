@@ -94,6 +94,16 @@
         - rancher-nfs
         - rancher-efs
         - rancher-ebs
+    - variable: "host_affinity"
+      type: "string"
+      required: true
+      label: "Host affinity"
+      default: "db=true"
+    - variable: "data_dir"
+      type: "string"
+      required: true
+      label: "Data directory"
+      default: "/data"
 
 version: '2'
 services:

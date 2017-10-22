@@ -4,8 +4,16 @@ services:
     image: busybox
     labels:
       io.rancher.container.start_once: true
+{{- if ne .Values.host_affinity ""}}
+      io.rancher.scheduler.affinity:host_label: ${host_affinity}
+{{- end}}
     volumes:
-      - mysqldata:/var/lib/mysql
+{{- if ne .Values.data_dir ""}}
+      - ${data_dir}:/var/lib/mysql
+{{- else }}
+      - /var/lib/mysql
+{{- end}}
+
   mysql:
     image: ${mysql_image}
     environment:
@@ -29,17 +37,22 @@ services:
       MYSQL_USER: ${mysql_user}
 {{- end}}
     tty: true
-    command:
-        - set global max_allowed_packet=67108864 && mysqld
     stdin_open: true
     labels:
       io.rancher.sidekicks: mysql-data
+{{- if ne .Values.host_affinity ""}}
+      io.rancher.scheduler.affinity:host_label: ${host_affinity}
+{{- end}}
     volumes_from:
       - mysql-data
 
   adminer:
     image: 'clue/adminer:latest'
     restart: on-failure
+    labels:
+{{- if ne .Values.host_affinity ""}}
+      io.rancher.scheduler.affinity:host_label: ${host_affinity}
+{{- end}}
     links:
       - mysql:db
 
