@@ -1,0 +1,5 @@
+name: OpenVas service
+description: |
+  Open vas service
+version: v0.0.1
+category: General

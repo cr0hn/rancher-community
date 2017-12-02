@@ -17,8 +17,8 @@ services:
         - mariadb
       environment:
         - WORDPRESS_DATABASE_NAME=${mariadb_database_name}
-        - WORDPRESS_DATABASE_USER=${mariadb_user} 
-        - WORDPRESS_DATABASE_PASSWORD=${mariadb_user_password}       
+        - WORDPRESS_DATABASE_USER=${mariadb_user}
+        - WORDPRESS_DATABASE_PASSWORD=${mariadb_user_password}
         - WORDPRESS_USERNAME=${wordpress_username}
         - WORDPRESS_PASSWORD=${wordpress_password}
   wordpress-lb:
@@ -27,6 +27,5 @@ services:
       - ${public_port}:${public_port}
 volumes:
   mariadb_data:
-    driver: ${volume_driver}
   wordpress_data:
     driver: ${volume_driver}
